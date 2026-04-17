@@ -1,5 +1,5 @@
 import { Mail } from 'lucide-react';
-import { SiGithub, SiInstagram, SiYoutube } from '@icons-pack/react-simple-icons';
+import { SiGithub, SiWhatsapp } from '@icons-pack/react-simple-icons';
 
 const LinkedinIcon = ({ className }: { className?: string }) => (
   <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" className={className} fill="currentColor">
@@ -8,26 +8,34 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+async function openContact(type: 'email' | 'whatsapp') {
+  const res = await fetch(`/api/contact/${type}`);
+  const { url } = await res.json() as { url: string };
+  if (type === 'whatsapp') {
+    window.open(url, '_blank', 'noopener,noreferrer');
+  } else {
+    window.location.href = url;
+  }
+}
+
 const socialLinks = [
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/antonio-viciana-g%C3%A1lvez-a4930b23b',
     icon: LinkedinIcon,
+    onClick: undefined as undefined | (() => void),
   },
   {
     label: 'GitHub',
     href: 'https://github.com/Vicig96',
     icon: SiGithub,
+    onClick: undefined as undefined | (() => void),
   },
   {
-    label: 'Instagram',
+    label: 'WhatsApp',
     href: '#',
-    icon: SiInstagram,
-  },
-  {
-    label: 'YouTube',
-    href: '#',
-    icon: SiYoutube,
+    icon: SiWhatsapp,
+    onClick: () => openContact('whatsapp'),
   },
 ];
 
@@ -51,10 +59,14 @@ export default function ContactCard() {
           <p className="cc3d-text">
             Ya sea un examen que se acerca, una asignatura que no avanza o un proyecto técnico: escríbeme y vemos cómo ayudarte. Sin compromiso, sin rodeos.
           </p>
-          <a href="mailto:antoniovicianagalvez@gmail.com" className="cc3d-email-btn">
+          <button
+            onClick={() => openContact('email')}
+            className="cc3d-email-btn"
+            title="Enviar correo"
+            type="button"
+          >
             <Mail className="h-4 w-4 shrink-0" />
-            antoniovicianagalvez@gmail.com
-          </a>
+          </button>
           <p className="cc3d-hint">Respondo en menos de 24 h · Sin permanencia · Primera sesión sin compromiso</p>
         </div>
         <div className="cc3d-bottom">
@@ -65,10 +77,11 @@ export default function ContactCard() {
                 <a
                   key={link.label}
                   href={link.href}
-                  target={link.href.startsWith('http') ? '_blank' : undefined}
-                  rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                  target={link.onClick ? undefined : '_blank'}
+                  rel={link.onClick ? undefined : 'noopener noreferrer'}
                   className="cc3d-social-btn"
                   title={link.label}
+                  onClick={link.onClick ? (e) => { e.preventDefault(); link.onClick!(); } : undefined}
                 >
                   <Icon className="h-4 w-4" />
                 </a>

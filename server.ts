@@ -19,6 +19,18 @@ async function startServer() {
     res.json({ status: 'ok' });
   });
 
+  app.get('/api/contact/email', (req, res) => {
+    const email = process.env.CONTACT_EMAIL;
+    if (!email) return res.status(404).json({ error: 'Not configured' });
+    res.json({ url: `mailto:${email}` });
+  });
+
+  app.get('/api/contact/whatsapp', (req, res) => {
+    const phone = process.env.CONTACT_WHATSAPP;
+    if (!phone) return res.status(404).json({ error: 'Not configured' });
+    res.json({ url: `https://wa.me/${phone}` });
+  });
+
   app.post('/api/chat', async (req, res) => {
     try {
       const { messages } = req.body;
