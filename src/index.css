@@ -945,6 +945,7 @@ button {
     display: inline-flex;
     flex: 0 0 auto;
     max-width: 6.4rem;
+    margin-left: 0.3rem;
     padding: 0.68rem 0.82rem;
     font-size: 0.74rem;
     line-height: 1.15;
@@ -1117,6 +1118,7 @@ button {
 
   .mobile-glass-nav .nav-cta-button {
     max-width: 5.2rem;
+    margin-left: 0.42rem;
     padding: 0.58rem 0.66rem;
     font-size: 0.64rem;
     border-radius: 1.45rem;
