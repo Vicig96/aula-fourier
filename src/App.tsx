@@ -528,7 +528,7 @@ export default function App() {
             ))}
           </div>
 
-          <button onClick={() => scrollTo('contacto')} className="button-primary hidden xl:inline-flex">
+          <button onClick={() => scrollTo('contacto')} className="button-primary nav-cta-button hidden xl:inline-flex">
             Reserva una clase
           </button>
           <ThemeSwitch isDark={isDark} onToggle={() => setIsDark(d => !d)} />

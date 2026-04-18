@@ -178,6 +178,10 @@ button {
   flex: 1 1 auto;
 }
 
+.nav-cta-button {
+  flex: 0 0 auto;
+}
+
 .nav-brand-title {
   line-height: 1.05;
 }
@@ -937,6 +941,24 @@ button {
     padding: 0.8rem 0.9rem;
   }
 
+  .mobile-glass-nav .nav-cta-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    max-width: 6.4rem;
+    padding: 0.68rem 0.82rem;
+    font-size: 0.74rem;
+    line-height: 1.15;
+    text-align: center;
+    white-space: normal;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.12) inset,
+      0 12px 24px -18px rgba(29, 78, 216, 0.62);
+  }
+
+  .mobile-glass-nav .nav-cta-button::after {
+    display: none;
+  }
+
   .nav-brand-button {
     gap: 0.8rem;
   }
@@ -1091,6 +1113,13 @@ button {
   .mobile-glass-nav {
     padding: 0.72rem 0.78rem;
     border-radius: 1.35rem;
+  }
+
+  .mobile-glass-nav .nav-cta-button {
+    max-width: 5.2rem;
+    padding: 0.58rem 0.66rem;
+    font-size: 0.64rem;
+    border-radius: 1.45rem;
   }
 
   .nav-brand-button {
