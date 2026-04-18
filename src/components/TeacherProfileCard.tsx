@@ -231,6 +231,8 @@ const StyledWrapper = styled.div`
 `;
 
 export default function TeacherProfileCard() {
+  const profileImageSrc = `${import.meta.env.BASE_URL}antonio.jpg`;
+
   return (
     <StyledWrapper>
       <div className="card">
@@ -242,7 +244,7 @@ export default function TeacherProfileCard() {
         </a>
 
         <div className="profile-pic">
-          <img src="/antonio.jpg" alt="Antonio Viciana" />
+          <img src={profileImageSrc} alt="Antonio Viciana" />
         </div>
 
         <div className="bottom">
