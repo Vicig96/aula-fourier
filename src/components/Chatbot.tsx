@@ -2,6 +2,43 @@ import { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, X, Loader2 } from 'lucide-react';
 
+function normalizeText(text: string) {
+  return text
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase();
+}
+
+function getFallbackReply(message: string) {
+  const text = normalizeText(message);
+
+  if (/(hola|buenas|hey|funciona|estas ahi)/.test(text)) {
+    return 'Sí, aquí estoy. En esta versión publicada te respondo en modo local y puedo orientarte sobre contacto, materias y metodología.';
+  }
+
+  if (/(contact|correo|email|mail|whatsapp|hablar|escribir|reserv|profesor|clase)/.test(text)) {
+    return 'Puedes contactar con Antonio desde la sección "Contacto" al final de la página. Ahí tienes acceso directo para escribirle y contarle tu caso.';
+  }
+
+  if (/(precio|precios|tarifa|coste|cuanto cuesta|cuanto vale)/.test(text)) {
+    return 'El precio no aparece publicado en la web. Lo mejor es usar la sección "Contacto" y explicar asignatura, nivel y si buscas apoyo puntual o seguimiento continuo.';
+  }
+
+  if (/(online|presencial|videollamada|remoto)/.test(text)) {
+    return 'La web indica un formato flexible y adaptado. Para confirmar disponibilidad online o presencial, lo mejor es escribir desde la sección "Contacto".';
+  }
+
+  if (/(matematic|fisic|quimic|tecnolog|program|ia|dam|eso|bachillerato|universidad)/.test(text)) {
+    return 'Aula Fourier está orientada a Matemáticas, Física, Química, Tecnología, Programación e IA, con apoyo para ESO, Bachillerato, Universidad y ciclos técnicos.';
+  }
+
+  if (/(metodo|como ensena|como enseña|explica|aprendo|bloqueo|nivel)/.test(text)) {
+    return 'El enfoque es claro y progresivo: detectar el bloqueo real, explicar con orden y ejemplos útiles, y avanzar a tu ritmo hasta que cada concepto encaje.';
+  }
+
+  return 'Ahora mismo el chat en vivo no está disponible en esta versión publicada, pero sí puedo orientarte de forma básica. Si quieres, pregúntame por materias, metodología o cómo contactar con Antonio.';
+}
+
 const WaveIcon = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
     {/* Wave Body (Background fill) */}
@@ -57,9 +94,19 @@ const Chatbot = () => {
     if (!input.trim()) return;
 
     const userMessage = input.trim();
+    const shouldUseLocalFallback = window.location.hostname.endsWith('github.io');
     setInput('');
     setMessages(prev => [...prev, { role: 'user', text: userMessage }]);
     setIsLoading(true);
+
+    if (shouldUseLocalFallback) {
+      setMessages(prev => [
+        ...prev,
+        { role: 'model', text: getFallbackReply(userMessage) }
+      ]);
+      setIsLoading(false);
+      return;
+    }
 
     try {
       const history = messages
