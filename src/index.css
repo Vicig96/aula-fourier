@@ -118,6 +118,54 @@ button {
     0 12px 24px -14px rgba(14, 165, 233, 0.5);
 }
 
+.mobile-nav-strip {
+  margin-top: 0.65rem;
+  overflow: hidden;
+}
+
+.mobile-nav-scroll {
+  display: flex;
+  gap: 0.65rem;
+  overflow-x: auto;
+  padding: 0.1rem 0.15rem 0.35rem;
+  scrollbar-width: none;
+}
+
+.mobile-nav-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.mobile-nav-link {
+  flex: 0 0 auto;
+  border-radius: 999px;
+  padding: 0.72rem 1rem;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    inset 0 0 0 1px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(14px);
+}
+
+.mobile-nav-link-active {
+  color: #0f172a;
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.96) inset,
+    inset 0 0 0 1px rgba(14, 165, 233, 0.22),
+    0 12px 20px -14px rgba(14, 165, 233, 0.38);
+}
+
+.mobile-nav-link-cta {
+  color: white;
+  background: linear-gradient(140deg, #0c1424 0%, #1e3a8a 44%, #1d4ed8 100%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.15) inset,
+    0 18px 30px -20px rgba(29, 78, 216, 0.72);
+}
+
 /* ── Buttons ── */
 .button-primary,
 .button-secondary,
@@ -609,6 +657,23 @@ button {
     0 12px 24px -14px rgba(14, 165, 233, 0.4);
 }
 
+[data-theme="dark"] .mobile-nav-link {
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .mobile-nav-link-active {
+  color: #f8fafc;
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.1) inset,
+    inset 0 0 0 1px rgba(56, 189, 248, 0.26),
+    0 12px 24px -16px rgba(14, 165, 233, 0.4);
+}
+
 [data-theme="dark"] .button-secondary {
   color: #e2e8f0;
   background: rgba(255, 255, 255, 0.07);
@@ -842,6 +907,61 @@ button {
     border-radius: 1.5rem;
   }
 
+  .mobile-glass-nav {
+    gap: 0.85rem;
+    align-items: flex-start;
+    padding: 0.95rem 1rem;
+  }
+
+  .hero-section {
+    padding-top: 11.75rem;
+    padding-bottom: 4rem;
+  }
+
+  .hero-grid {
+    min-height: auto;
+    gap: 2.2rem;
+  }
+
+  .hero-copy {
+    text-align: center;
+  }
+
+  .hero-copy h1 {
+    margin-top: 1.15rem;
+    font-size: clamp(2.8rem, 12vw, 4.4rem);
+    line-height: 0.98;
+  }
+
+  .hero-copy p {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-chip-row {
+    justify-content: center;
+  }
+
+  .hero-actions {
+    align-items: stretch;
+  }
+
+  .hero-actions .button-primary,
+  .hero-actions .button-secondary {
+    width: 100%;
+    padding-inline: 1.15rem;
+  }
+
+  .hero-stats {
+    gap: 0.9rem;
+  }
+
+  .hero-card-wrap {
+    display: flex;
+    justify-content: center;
+    padding-top: 0;
+  }
+
   .hero-photo-shell {
     min-height: 30rem;
     padding: 1.25rem;
@@ -863,6 +983,96 @@ button {
 
   .faq-answer {
     padding: 0 1.2rem 1.2rem;
+  }
+
+  .subject-card {
+    min-height: auto;
+    padding: 1.35rem;
+  }
+
+  .subject-card h3 {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+
+  .trust-card,
+  .process-step,
+  .resource-window,
+  .surface-panel,
+  .stat-card {
+    border-radius: 1.5rem;
+  }
+
+  .process-step {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .process-step-number {
+    height: 2.7rem;
+    width: 2.7rem;
+  }
+
+  .formula-chip {
+    max-width: calc(100vw - 2.5rem);
+    padding: 0.62rem 0.9rem;
+    font-size: 0.78rem;
+  }
+
+  .plane-trail {
+    width: 3rem;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-shell {
+    overflow-x: clip;
+  }
+
+  .progress-bar {
+    height: 2px;
+  }
+
+  .hero-section {
+    padding-inline: 1rem;
+    padding-top: 11.25rem;
+  }
+
+  .hero-copy .section-eyebrow {
+    justify-content: center;
+    width: 100%;
+    padding-inline: 0.9rem;
+    font-size: 0.64rem;
+    letter-spacing: 0.14em;
+  }
+
+  .note-chip {
+    width: 100%;
+    justify-content: center;
+    padding: 0.82rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  .hero-copy p {
+    font-size: 1rem;
+    line-height: 1.8;
+  }
+
+  .hero-stats .stat-card {
+    padding: 1.2rem 1rem;
+  }
+
+  .hero-stats .font-note {
+    font-size: 2rem;
+  }
+
+  .faq-summary {
+    align-items: flex-start;
+  }
+
+  .faq-summary .font-display {
+    font-size: 1.05rem;
+    line-height: 1.45;
   }
 }
 
@@ -1458,6 +1668,99 @@ button {
 
 .cc3d-parent:hover .cc3d-card .cc3d-circle5 {
   transform: translate3d(0, 0, 120px);
+}
+
+@media (max-width: 768px) {
+  .cc3d-parent {
+    perspective: none;
+  }
+
+  .cc3d-card {
+    border-radius: 30px;
+    box-shadow:
+      rgba(14, 165, 233, 0.12) 0px 16px 28px -18px,
+      rgba(14, 165, 233, 0.18) 0px 14px 24px -16px;
+  }
+
+  .cc3d-glass {
+    inset: 6px;
+    border-radius: 24px;
+    border-top-right-radius: 28px;
+  }
+
+  .cc3d-content {
+    padding: 1.35rem 1.2rem 0.75rem;
+  }
+
+  .cc3d-title {
+    font-size: 1.25rem;
+    line-height: 1.25;
+    max-width: 14rem;
+  }
+
+  .cc3d-text {
+    font-size: 0.88rem;
+    line-height: 1.55;
+    max-width: 18rem;
+  }
+
+  .cc3d-hint {
+    line-height: 1.5;
+  }
+
+  .cc3d-bottom {
+    padding: 0.2rem 1.2rem 1.2rem;
+  }
+
+  .cc3d-socials {
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .cc3d-social-btn {
+    width: 38px;
+    height: 38px;
+  }
+
+  .cc3d-circle1 {
+    width: 110px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .cc3d-circle2 {
+    width: 92px;
+    top: 12px;
+    right: 12px;
+  }
+
+  .cc3d-circle3 {
+    width: 72px;
+    top: 18px;
+    right: 18px;
+  }
+
+  .cc3d-circle4 {
+    width: 54px;
+    top: 24px;
+    right: 24px;
+  }
+
+  .cc3d-circle5 {
+    width: 40px;
+    top: 28px;
+    right: 28px;
+  }
+
+  .cc3d-parent:hover .cc3d-card,
+  .cc3d-parent:hover .cc3d-card .cc3d-socials .cc3d-social-btn,
+  .cc3d-parent:hover .cc3d-card .cc3d-circle2,
+  .cc3d-parent:hover .cc3d-card .cc3d-circle3,
+  .cc3d-parent:hover .cc3d-card .cc3d-circle4,
+  .cc3d-parent:hover .cc3d-card .cc3d-circle5 {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

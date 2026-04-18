@@ -506,7 +506,7 @@ export default function App() {
       <BackgroundScene y={backgroundY} />
 
       <nav className="fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-6xl -translate-x-1/2 px-2">
-        <div className={`glass-nav flex items-center justify-between gap-4 px-4 py-3 md:px-6 ${isScrolled ? 'glass-nav-scrolled' : ''}`}>
+        <div className={`glass-nav mobile-glass-nav flex items-center justify-between gap-4 px-4 py-3 md:px-6 ${isScrolled ? 'glass-nav-scrolled' : ''}`}>
           <button onClick={() => scrollTo('inicio')} className="flex items-center gap-3 text-left" aria-label="Volver al inicio">
             <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-500/12 text-sky-800 ring-1 ring-sky-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
@@ -533,12 +533,28 @@ export default function App() {
           </button>
           <ThemeSwitch isDark={isDark} onToggle={() => setIsDark(d => !d)} />
         </div>
+        <div className="mobile-nav-strip lg:hidden">
+          <div className="mobile-nav-scroll">
+            {navigationItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => scrollTo(item.id)}
+                className={`mobile-nav-link ${activeSection === item.id ? 'mobile-nav-link-active' : ''}`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <button onClick={() => scrollTo('contacto')} className="mobile-nav-link mobile-nav-link-cta">
+              Contacto
+            </button>
+          </div>
+        </div>
       </nav>
 
       <main className="relative z-10">
-        <section id="inicio" className="relative px-6 pb-20 pt-32 md:px-8 md:pt-36">
-          <div className="mx-auto grid min-h-[calc(100vh-8rem)] max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
-            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: 'easeOut' }} className="max-w-3xl">
+        <section id="inicio" className="hero-section relative px-6 pb-20 pt-32 md:px-8 md:pt-36">
+          <div className="hero-grid mx-auto grid min-h-[calc(100vh-8rem)] max-w-6xl items-center gap-12 lg:grid-cols-[1.15fr_0.85fr]">
+            <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: 'easeOut' }} className="hero-copy max-w-3xl">
               <span className="section-eyebrow">ESO · Bachillerato · Universidad · FP y ciclos técnicos</span>
               <h1 className="font-display mt-7 text-5xl font-bold leading-[1.02] text-slate-950 md:text-7xl lg:text-[5.5rem]">
                 De &quot;no entiendo nada&quot; a{' '}
@@ -548,7 +564,7 @@ export default function App() {
                 Soy Antonio, ingeniero y docente. Mis clases son técnicamente rigurosas y humanamente cercanas: empezamos donde estás y avanzamos hasta que cada concepto encaja.
               </p>
 
-              <div className="mt-8 flex flex-wrap gap-3">
+              <div className="hero-chip-row mt-8 flex flex-wrap gap-3">
                 {['Online y presencial', 'Material propio incluido', 'Ritmo adaptado a ti'].map((item, i) => (
                   <span key={item} className="note-chip">
                     <span className={`h-1.5 w-1.5 shrink-0 rounded-full ${i === 0 ? 'bg-sky-400' : i === 1 ? 'bg-rose-400' : 'bg-amber-400'}`} />
@@ -557,7 +573,7 @@ export default function App() {
                 ))}
               </div>
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <div className="hero-actions mt-10 flex flex-col gap-4 sm:flex-row">
                 <button onClick={() => scrollTo('contacto')} className="button-primary">
                   Reserva tu primera clase
                 </button>
@@ -566,7 +582,7 @@ export default function App() {
                 </button>
               </div>
 
-              <div className="mt-12 grid gap-4 sm:grid-cols-3">
+              <div className="hero-stats mt-12 grid gap-4 sm:grid-cols-3">
                 <div className="stat-card">
                   <div className="absolute inset-x-0 top-0 h-[3px] rounded-t-[2rem] bg-gradient-to-r from-sky-400 to-cyan-300 opacity-80" />
                   <span className="font-note text-3xl text-sky-700">Ingeniero titulado</span>
@@ -585,7 +601,7 @@ export default function App() {
               </div>
             </motion.div>
 
-            <motion.div style={{ y: heroCardY }} className="self-start pt-4 lg:pt-2">
+            <motion.div style={{ y: heroCardY }} className="hero-card-wrap self-start pt-4 lg:pt-2">
               <TeacherProfileCard />
             </motion.div>
           </div>

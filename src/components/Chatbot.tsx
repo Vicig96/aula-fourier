@@ -109,8 +109,7 @@ const Chatbot = () => {
             initial={{ opacity: 0, y: 20, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.9 }}
-            className="fixed bottom-24 right-6 w-[90vw] max-w-[380px] bg-white/92 backdrop-blur-xl border border-white/80 shadow-[0_24px_60px_-20px_rgba(15,23,42,0.35)] rounded-[2rem] z-50 flex flex-col overflow-hidden"
-            style={{ maxHeight: '60vh', height: '500px' }}
+            className="fixed inset-x-4 bottom-22 z-50 flex h-[min(500px,68vh)] w-auto flex-col overflow-hidden rounded-[2rem] border border-white/80 bg-white/92 shadow-[0_24px_60px_-20px_rgba(15,23,42,0.35)] backdrop-blur-xl sm:inset-x-auto sm:right-6 sm:w-[90vw] sm:max-w-[380px] sm:bottom-24"
           >
             {/* Header */}
             <div className="chatbot-header bg-sky-50/90 p-4 border-b border-slate-900/6 flex justify-between items-center rounded-t-[2rem]">
@@ -171,9 +170,9 @@ const Chatbot = () => {
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
-        className="fixed bottom-6 right-6 w-16 h-16 bg-white/92 backdrop-blur-xl border border-white/80 shadow-[0_12px_30px_-14px_rgba(15,23,42,0.28)] rounded-full flex items-center justify-center z-50 text-sky-700"
+        className="fixed bottom-4 right-4 z-50 flex h-14 w-14 items-center justify-center rounded-full border border-white/80 bg-white/92 text-sky-700 shadow-[0_12px_30px_-14px_rgba(15,23,42,0.28)] backdrop-blur-xl sm:bottom-6 sm:right-6 sm:h-16 sm:w-16"
       >
-        <WaveIcon className="w-12 h-12" />
+        <WaveIcon className="h-10 w-10 sm:h-12 sm:w-12" />
       </motion.button>
     </>
   );

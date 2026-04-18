@@ -4,10 +4,11 @@ const StyledWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 
   .card {
-    width: 300px;
-    height: 300px;
+    width: min(100%, 320px);
+    height: clamp(280px, 78vw, 320px);
     background: white;
     border-radius: 32px;
     padding: 3px;
@@ -227,6 +228,64 @@ const StyledWrapper = styled.div`
   .card:hover .profile-pic img {
     transform: scale(1.5);
     transition: all 0.5s ease-in-out 0.5s;
+  }
+
+  @media (max-width: 768px) {
+    .card {
+      width: min(100%, 340px);
+      height: clamp(272px, 82vw, 332px);
+      border-radius: 28px;
+    }
+
+    .card .mail {
+      top: 1rem;
+      right: 1.15rem;
+    }
+
+    .card .profile-pic {
+      width: 84%;
+      height: 78%;
+      top: 3%;
+      left: 8%;
+      border-radius: 24px;
+    }
+
+    .card .bottom {
+      top: 77%;
+      border-radius: 24px;
+    }
+
+    .card .bottom .content {
+      left: 1rem;
+      right: 1rem;
+      height: 136px;
+    }
+
+    .card .bottom .content .name {
+      font-size: 1.05rem;
+    }
+
+    .card .bottom .content .about-me {
+      margin-top: 0.7rem;
+      font-size: 0.82rem;
+      line-height: 1.45;
+    }
+
+    .card .bottom .bottom-bottom {
+      left: 1rem;
+      right: 1rem;
+      bottom: 0.8rem;
+      gap: 0.85rem;
+    }
+
+    .card .bottom .bottom-bottom .social-links-container {
+      gap: 0.8rem;
+    }
+
+    .card .bottom .bottom-bottom .button {
+      padding: 0.45rem 0.75rem;
+      font-size: 0.68rem;
+    }
   }
 `;
 
