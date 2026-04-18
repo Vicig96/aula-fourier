@@ -4,7 +4,13 @@ import App from './App.tsx';
 import NotFound from './components/NotFound.tsx';
 import './index.css';
 
-const isRoot = window.location.pathname === '/' || window.location.pathname === '';
+function trimTrailingSlash(value: string) {
+  return value.length > 1 && value.endsWith('/') ? value.slice(0, -1) : value;
+}
+
+const currentPath = trimTrailingSlash(window.location.pathname);
+const basePath = trimTrailingSlash(import.meta.env.BASE_URL);
+const isRoot = currentPath === '/' || currentPath === '' || currentPath === basePath;
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

@@ -1,4 +1,6 @@
 export default function NotFound() {
+  const homeHref = import.meta.env.BASE_URL;
+
   return (
     <section style={{
       padding: '40px 0',
@@ -43,7 +45,7 @@ export default function NotFound() {
             La página que buscas no existe.
           </p>
           <a
-            href="/"
+            href={homeHref}
             style={{
               color: '#fff',
               padding: '12px 28px',
