@@ -965,7 +965,7 @@ button {
   }
 
   .hero-section {
-    padding-top: 13.4rem;
+    padding-top: 15.25rem;
     padding-bottom: 4rem;
   }
 
@@ -995,12 +995,16 @@ button {
 
   .hero-actions {
     align-items: stretch;
+    margin-top: 1.35rem;
   }
 
   .hero-actions .button-primary,
   .hero-actions .button-secondary {
     width: 100%;
     padding-inline: 1.15rem;
+    min-height: 3.5rem;
+    white-space: normal;
+    line-height: 1.25;
   }
 
   .hero-stats {
@@ -1108,23 +1112,23 @@ button {
   }
 
   .mobile-nav-strip {
-    margin-top: 0.5rem;
+    margin-top: 0.55rem;
     border-radius: 1rem;
   }
 
   .mobile-nav-scroll {
-    gap: 0.55rem;
-    padding: 0.42rem 0.45rem;
+    gap: 0.5rem;
+    padding: 0.42rem 0.42rem;
   }
 
   .mobile-nav-link {
-    padding: 0.62rem 0.88rem;
-    font-size: 0.78rem;
+    padding: 0.6rem 0.82rem;
+    font-size: 0.76rem;
   }
 
   .hero-section {
     padding-inline: 1rem;
-    padding-top: 13rem;
+    padding-top: 17rem;
   }
 
   .hero-copy .section-eyebrow {
@@ -1133,6 +1137,7 @@ button {
     padding-inline: 0.9rem;
     font-size: 0.64rem;
     letter-spacing: 0.14em;
+    line-height: 1.45;
   }
 
   .note-chip {
@@ -1145,6 +1150,18 @@ button {
   .hero-copy p {
     font-size: 1rem;
     line-height: 1.8;
+  }
+
+  .hero-actions {
+    margin-top: 1.5rem;
+  }
+
+  .hero-stats {
+    margin-top: 1.45rem;
+  }
+
+  .formula-chip {
+    display: none;
   }
 
   .hero-stats .stat-card {
