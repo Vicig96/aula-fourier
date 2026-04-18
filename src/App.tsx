@@ -507,14 +507,14 @@ export default function App() {
 
       <nav className="fixed left-1/2 top-4 z-50 w-[calc(100%-1.5rem)] max-w-6xl -translate-x-1/2 px-2">
         <div className={`glass-nav mobile-glass-nav flex items-center justify-between gap-4 px-4 py-3 md:px-6 ${isScrolled ? 'glass-nav-scrolled' : ''}`}>
-          <button onClick={() => scrollTo('inicio')} className="flex items-center gap-3 text-left" aria-label="Volver al inicio">
-            <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-500/12 text-sky-800 ring-1 ring-sky-500/20">
+          <button onClick={() => scrollTo('inicio')} className="nav-brand-button flex items-center gap-3 text-left" aria-label="Volver al inicio">
+            <div className="nav-brand-mark flex h-11 w-11 items-center justify-center rounded-2xl bg-sky-500/12 text-sky-800 ring-1 ring-sky-500/20">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.1" strokeLinecap="round" strokeLinejoin="round" className="h-6 w-6">
                 <path d="M2 12 Q 7 2 12 12 T 22 12" />
               </svg>
             </div>
-            <div>
-              <p className="font-display text-lg font-bold text-slate-900">Aula Fourier</p>
+            <div className="min-w-0">
+              <p className="nav-brand-title font-display text-lg font-bold text-slate-900">Aula Fourier</p>
               <p className="hidden text-sm text-slate-500 sm:block">Clases particulares STEM</p>
             </div>
           </button>
@@ -528,7 +528,7 @@ export default function App() {
             ))}
           </div>
 
-          <button onClick={() => scrollTo('contacto')} className="button-primary hidden sm:inline-flex">
+          <button onClick={() => scrollTo('contacto')} className="button-primary hidden xl:inline-flex">
             Reserva una clase
           </button>
           <ThemeSwitch isDark={isDark} onToggle={() => setIsDark(d => !d)} />
