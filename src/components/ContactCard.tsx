@@ -41,7 +41,7 @@ const socialLinks = [
 
 export default function ContactCard() {
   return (
-    <div className="cc3d-parent">
+    <div className="cc3d-parent cc3d-parent-mobile-animated">
       <div className="cc3d-card">
         <div className="cc3d-logo">
           <span className="cc3d-circle cc3d-circle1" />
