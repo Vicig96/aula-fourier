@@ -26,7 +26,10 @@ import {
 
 import Chatbot from './components/Chatbot';
 import ContactCard from './components/ContactCard';
+import EngineVisual from './components/EngineVisual';
+import FourierWaves from './components/FourierWaves';
 import LoadingScreen from './components/LoadingScreen';
+import SubjectMiniCards from './components/SubjectMiniCards';
 import TeacherProfileCard from './components/TeacherProfileCard';
 import ThemeSwitch from './components/ThemeSwitch';
 
@@ -84,6 +87,24 @@ const subjects: Subject[] = [
     tags: ['DAM', 'Proyectos', 'Automatización'],
   },
 ];
+
+const SKILL_GROUPS = [
+  {
+    label: 'Programación & IA',
+    color: '#a78bfa',
+    items: ['Python', 'R', 'Matlab', 'VS code', 'APIs', 'Machine Learning', 'AI Training', 'Agentic IA', 'Qlik', 'Kibana', 'Databricks', 'Debugging & Testing', 'IoT', 'Codificación por bloques', 'Antigravity'],
+  },
+  {
+    label: 'Ingeniería & Diseño',
+    color: '#fbbf24',
+    items: ['C / C++ embebido', 'ROS', 'Programación PLC', 'AutoCAD', 'Fusion 360', 'SolidWorks', 'DS Catia', '3D Printing', 'TinkerCAD'],
+  },
+  {
+    label: 'Educación & Herramientas',
+    color: '#38bdf8',
+    items: ['Scratch', 'Micro:bit', 'Arduino', 'Raspberry Pi', 'LEGO Mindstorms', 'Robótica educativa', 'MS Excel', 'Enseñanza y Educación'],
+  },
+] as const;
 
 const methodology = [
   {
@@ -671,30 +692,25 @@ export default function App() {
               description="Desde la ESO hasta la universidad, cada materia con el nivel adecuado, ejemplos del mundo real y una progresión concreta sin saltar pasos."
             />
 
-            <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
-              {subjects.map((subject, index) => (
-                <motion.article key={subject.title} {...revealUp} transition={{ ...revealUp.transition, delay: index * 0.06 }} whileHover={shouldReduceMotion ? undefined : { y: -8, scale: 1.01 }} className="subject-card">
-                  <div className={`absolute inset-0 rounded-[2rem] bg-gradient-to-br ${subject.accent}`} />
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between gap-4">
-                      <div className={`icon-chip ${subject.accent.split(' ').at(-1) ?? ''}`}>
-                        <subject.icon className="h-6 w-6" strokeWidth={1.9} />
-                      </div>
-                      <span className="rounded-full bg-white/90 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 shadow-sm ring-1 ring-slate-900/6 backdrop-blur-sm">
-                        Aula particular
+            <SubjectMiniCards />
+
+            <div className="skills-strip">
+              <p className="skills-strip-title">Stack docente</p>
+              {SKILL_GROUPS.map(g => (
+                <div key={g.label} className="skills-group">
+                  <span className="skills-group-label" style={{ color: g.color }}>{g.label}</span>
+                  <div className="skills-chips">
+                    {g.items.map(skill => (
+                      <span
+                        key={skill}
+                        className="skill-chip"
+                        style={{ color: g.color, backgroundColor: `${g.color}12`, borderColor: `${g.color}28` }}
+                      >
+                        {skill}
                       </span>
-                    </div>
-                    <h3 className="font-display mt-8 text-3xl font-bold text-slate-950">{subject.title}</h3>
-                    <p className="mt-4 text-base leading-7 text-slate-600">{subject.description}</p>
-                    <div className="mt-6 flex flex-wrap gap-2">
-                      {subject.tags.map((tag) => (
-                        <span key={tag} className="rounded-full bg-white/65 px-3 py-1.5 text-sm font-medium text-slate-600 ring-1 ring-slate-900/8 backdrop-blur-sm">
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                    ))}
                   </div>
-                </motion.article>
+                </div>
               ))}
             </div>
           </div>
@@ -724,6 +740,8 @@ export default function App() {
                 </motion.article>
               ))}
             </div>
+
+            <FourierWaves />
           </div>
         </section>
 
@@ -753,34 +771,7 @@ export default function App() {
                 </div>
               </motion.div>
 
-              <motion.div {...revealUp} transition={{ ...revealUp.transition, delay: 0.08 }} className="resource-stage">
-                <div className="resource-window">
-                  <div className="resource-window-bar">
-                    <span className="dot bg-rose-400" />
-                    <span className="dot bg-amber-400" />
-                    <span className="dot bg-emerald-400" />
-                  </div>
-                  <div className="grid gap-4 md:grid-cols-[1.15fr_0.85fr]">
-                    <div className="rounded-[1.6rem] bg-gradient-to-br from-slate-900 to-slate-950 p-6 text-white shadow-[0_22px_50px_-16px_rgba(15,23,42,0.55),inset_0_1px_0_rgba(255,255,255,0.07)]">
-                      <p className="text-sm uppercase tracking-[0.22em] text-white/45">Sesión ejemplo</p>
-                      <p className="mt-4 text-3xl font-semibold">Problema, intuición, solución</p>
-                      <p className="mt-4 text-sm leading-7 text-white/70">
-                        Una clase no es solo resolver: primero entendemos qué ocurre, luego construimos el método y al final fijamos el aprendizaje con práctica útil.
-                      </p>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="rounded-[1.6rem] bg-gradient-to-br from-sky-100 to-white px-5 py-6 shadow-[0_4px_16px_-4px_rgba(14,165,233,0.15),inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-sky-500/10">
-                        <p className="font-note text-3xl text-sky-700">Esquemas limpios</p>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">Más aire, mejor jerarquía y bloques que se entienden de un vistazo.</p>
-                      </div>
-                      <div className="rounded-[1.6rem] bg-gradient-to-br from-amber-100 to-white px-5 py-6 shadow-[0_4px_16px_-4px_rgba(245,158,11,0.15),inset_0_1px_0_rgba(255,255,255,0.9)] ring-1 ring-amber-500/10">
-                        <p className="font-note text-3xl text-amber-700">Proyectos reales</p>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">Electrónica, maker, programación y materiales creados para aprender haciendo.</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
+              <EngineVisual />
             </div>
           </div>
         </section>
