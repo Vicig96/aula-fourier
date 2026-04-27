@@ -8,6 +8,8 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const CONTACT_EMAIL = 'antoniovicianagalvez@gmail.com';
+
 async function openContact(type: 'email' | 'whatsapp') {
   const res = await fetch(`/api/contact/${type}`);
   const { url } = await res.json() as { url: string };
@@ -59,14 +61,14 @@ export default function ContactCard() {
           <p className="cc3d-text">
             Ya sea un examen que se acerca, una asignatura que no avanza o un proyecto técnico: escríbeme y vemos cómo ayudarte. Sin compromiso, sin rodeos.
           </p>
-          <button
-            onClick={() => openContact('email')}
+          <a
+            href={`mailto:${CONTACT_EMAIL}`}
             className="cc3d-email-btn"
             title="Enviar correo"
-            type="button"
+            aria-label="Enviar correo"
           >
             <Mail className="h-4 w-4 shrink-0" />
-          </button>
+          </a>
           <p className="cc3d-hint">Respondo en menos de 24 h · Sin permanencia · Primera sesión sin compromiso</p>
         </div>
         <div className="cc3d-bottom">
