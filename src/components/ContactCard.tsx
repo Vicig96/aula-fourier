@@ -9,35 +9,23 @@ const LinkedinIcon = ({ className }: { className?: string }) => (
 );
 
 const CONTACT_EMAIL = 'antoniovicianagalvez@gmail.com';
-
-async function openContact(type: 'email' | 'whatsapp') {
-  const res = await fetch(`/api/contact/${type}`);
-  const { url } = await res.json() as { url: string };
-  if (type === 'whatsapp') {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  } else {
-    window.location.href = url;
-  }
-}
+const WHATSAPP_URL = 'https://wa.me/34663016850?text=Hola%20Antonio%2C%20me%20gustar%C3%ADa%20informarme%20sobre%20tus%20clases.';
 
 const socialLinks = [
   {
     label: 'LinkedIn',
     href: 'https://www.linkedin.com/in/antonio-viciana-g%C3%A1lvez-a4930b23b',
     icon: LinkedinIcon,
-    onClick: undefined as undefined | (() => void),
   },
   {
     label: 'GitHub',
     href: 'https://github.com/Vicig96',
     icon: SiGithub,
-    onClick: undefined as undefined | (() => void),
   },
   {
     label: 'WhatsApp',
-    href: '#',
+    href: WHATSAPP_URL,
     icon: SiWhatsapp,
-    onClick: () => openContact('whatsapp'),
   },
 ];
 
@@ -79,11 +67,11 @@ export default function ContactCard() {
                 <a
                   key={link.label}
                   href={link.href}
-                  target={link.onClick ? undefined : '_blank'}
-                  rel={link.onClick ? undefined : 'noopener noreferrer'}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="cc3d-social-btn"
                   title={link.label}
-                  onClick={link.onClick ? (e) => { e.preventDefault(); link.onClick!(); } : undefined}
+                  aria-label={link.label}
                 >
                   <Icon className="h-4 w-4" />
                 </a>
